@@ -716,7 +716,7 @@ export default function CodersClubWebsite() {
                       {/* Submit Button */}
                       <div className="text-center">
                         <a
-                          href="https://docs.google.com/forms/d/e/1FAIpQLSdi8jtYdyy8WLw49GmFm8e7j1L9GZcwWZk6P7iEIm7EYDCqfg/viewform?usp=sharing"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdk-rxkto8IA5Gd4v6YyLdBQIWZ_RTKddMalwd8cddrVtmmWQ/viewform"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-block"
