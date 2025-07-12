@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
+import { useEffect, useState } from "react"
 import { Code } from "lucide-react"
 
 const codingFacts = [
@@ -18,32 +17,26 @@ const codingFacts = [
 ]
 
 export default function LoadingScreen() {
-  const [currentFactIndex, setCurrentFactIndex] = useState(0)
+  const [randomFact, setRandomFact] = useState<string | null>(null)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentFactIndex((prevIndex) => (prevIndex + 1) % codingFacts.length)
-    }, 5000) // Change fact every 5 seconds
-
-    return () => clearInterval(interval)
+    const random = codingFacts[Math.floor(Math.random() * codingFacts.length)]
+    setRandomFact(random)
   }, [])
 
   return (
     <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-white text-black font-mono">
+      {/* Loading animation */}
       <div className="relative w-48 h-48 mb-8">
-        {/* Central rotating square */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-32 h-32 bg-red-600 border-8 border-black animate-spin origin-center"></div>
         </div>
-        {/* Inner pulsing circle */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-20 h-20 bg-blue-600 rounded-full border-8 border-black animate-pulse"></div>
         </div>
-        {/* Small yellow square in center */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-10 h-10 bg-yellow-500 border-4 border-black animate-pulse"></div>
         </div>
-
       </div>
 
       <h1 className="font-pixelify text-3xl md:text-5xl font-black tracking-tighter uppercase mb-6 animate-fadeInUp">
@@ -52,7 +45,9 @@ export default function LoadingScreen() {
       </h1>
 
       <div className="text-center max-w-md px-4">
-        <p className="text-sm md:text-base text-gray-800 mb-4">{codingFacts[currentFactIndex]}</p>
+        <p className="text-sm md:text-base text-gray-800 mb-4">
+          {randomFact || "Loading a cool fact..."}
+        </p>
         <p className="text-xs text-gray-600">
           <Code className="inline-block h-3 w-3 mr-1" />
           Preparing the digital playground...
